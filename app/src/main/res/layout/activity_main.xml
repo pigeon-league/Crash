@@ -1,111 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tipText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Crash复现类型!" />
-
-    <Button
-        android:id="@+id/DataFormatException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tipText"
-        android:textAllCaps="false"
-        android:text="DataFormatException"/>
-
-    <Button
-        android:id="@+id/EnumConstantNotPresentException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/DataFormatException"
-        android:textAllCaps="false"
-        android:text="EnumConstantNotPresentException"/>
-
-    <Button
-        android:id="@+id/FileNotFoundException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/EnumConstantNotPresentException"
-        android:textAllCaps="false"
-        android:text="FileNotFoundException"/>
-
-    <Button
-        android:id="@+id/CloneNotSupportedException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/FileNotFoundException"
-        android:textAllCaps="false"
-        android:text="CloneNotSupportedException"/>
-
-    <Button
-        android:id="@+id/InflateException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/CloneNotSupportedException"
-        android:textAllCaps="false"
-        android:text="InflateException"/>
-
-    <Button
-        android:id="@+id/BufferOverflowException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/InflateException"
-        android:textAllCaps="false"
-        android:text="BufferOverflowException"/>
-
-    <Button
-        android:id="@+id/NoSuchMethodException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/BufferOverflowException"
-        android:textAllCaps="false"
-        android:text="NoSuchMethodException"/>
-
-    <Button
-        android:id="@+id/FileUriExposedException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/NoSuchMethodException"
-        android:textAllCaps="false"
-        android:text="FileUriExposedException"/>
-
-    <Button
-        android:id="@+id/FormatException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/FileUriExposedException"
-        android:textAllCaps="false"
-        android:text="FormatException"/>
-
-    <Button
-        android:id="@+id/IllegalAccessError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/FormatException"
-        android:textAllCaps="false"
-        android:text="IllegalAccessError"/>
-
-    <Button
-        android:id="@+id/InterruptedException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/IllegalAccessError"
-        android:textAllCaps="false"
-        android:text="InterruptedException"/>
-
-    <Button
-        android:id="@+id/TimeoutException"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/InterruptedException"
-        android:textAllCaps="false"
-        android:text="TimeoutException"/>
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>
