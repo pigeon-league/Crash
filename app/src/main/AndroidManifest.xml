@@ -20,6 +20,19 @@
         </activity>
 
         <activity android:name=".bay.BayActivity"/>
+        <activity android:name=".bay.DataFormatExceptionActivity"/>
+        <activity android:name=".bay.EnumConstantNotPresentExceptionActivity"/>
+        <activity android:name=".bay.BufferOverflowExceptionActivity"/>
+        <activity android:name=".bay.CloneNotSupportedExceptionActivity"/>
+        <activity android:name=".bay.FileNotFoundExceptionActivity"/>
+        <activity android:name=".bay.FileUriExposedExceptionActivity"/>
+        <activity android:name=".bay.FormatExceptionActivity"/>
+        <activity android:name=".bay.IllegalAccessErrorActivity"/>
+        <activity android:name=".bay.InflateExceptionActivity"/>
+        <activity android:name=".bay.InterruptedExceptionActivity"/>
+        <activity android:name=".bay.NoSuchMethodExceptionActivity"/>
+        <activity android:name=".bay.TimeoutExceptionActivity"/>
+
         <activity android:name=".yong.YongActivity"/>
         <activity android:name=".yong.resourcenotfound.ResourceNotFoundActivity"/>
         <activity android:name=".yong.resourcenotfound.SetTextActivity"/>
