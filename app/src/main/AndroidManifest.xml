@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.baymax.crash">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,6 +35,23 @@
         <activity android:name=".yong.illegalargumentexception.SimpleDataFormatActivity"/>
         <activity android:name=".yong.illegalargumentexception.SummaryActivity"/>
         <activity android:name=".yong.classnotfound.ClassNotFoundActivity"/>
+        <activity android:name=".yong.cameraaccessexception.CameraAccessActivity"/>
+        <activity android:name=".yong.charactercodingexception.CharacterCodingActivity"/>
+        <activity android:name=".yong.charactercodingexception.UTF8ToGBKActivity"/>
+        <activity android:name=".yong.charactercodingexception.GBKToGB2312Activity"/>
+        <activity android:name=".yong.classformaterror.ClassFormatActivity"/>
+
+        <receiver android:name=".yong.cameraaccessexception.MyDeviceAdminReceiver"
+            android:label="@string/app_name"
+            android:description="@string/app_name"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/my_device_admin"/>
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
