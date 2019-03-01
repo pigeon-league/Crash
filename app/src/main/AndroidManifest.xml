@@ -18,6 +18,21 @@
         </activity>
 
         <activity android:name=".bay.BayActivity"/>
+        <activity android:name=".yong.YongActivity"/>
+        <activity android:name=".yong.resourcenotfound.ResourceNotFoundActivity"/>
+        <activity android:name=".yong.resourcenotfound.SetTextActivity"/>
+        <activity android:name=".yong.resourcenotfound.Layout2IdActivity"/>
+        <activity android:name=".yong.resourcenotfound.SummaryActivity"/>
+        <activity android:name=".yong.invalidclassexception.InvalidClassActivity"/>
+        <activity android:name=".yong.numberformatexception.NumberFormatActivity"/>
+        <activity android:name=".yong.numberformatexception.ParseIntActivity"/>
+        <activity android:name=".yong.numberformatexception.ParseIntActivity2"/>
+        <activity android:name=".yong.numberformatexception.SummaryActivity"/>
+        <activity android:name=".yong.illegalaccessexception.IllegalAccessActivity"/>
+        <activity android:name=".yong.illegalargumentexception.IllegalArgActivity"/>
+        <activity android:name=".yong.illegalargumentexception.SimpleDataFormatActivity"/>
+        <activity android:name=".yong.illegalargumentexception.SummaryActivity"/>
+        <activity android:name=".yong.classnotfound.ClassNotFoundActivity"/>
     </application>
 
 </manifest>
