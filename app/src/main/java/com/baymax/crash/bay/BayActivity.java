@@ -1,11 +1,11 @@
 package com.baymax.crash.bay;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.baymax.crash.R;
@@ -39,7 +39,45 @@ public class BayActivity extends AppCompatActivity {
         ((recyclerAdapter) mAdapter).setOnItemClickListener(new recyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.d("leroy", position+"");
+                switch (position){
+                    case 0:
+                        startActivity(new Intent(BayActivity.this, DataFormatExceptionActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(BayActivity.this, EnumConstantNotPresentExceptionActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(BayActivity.this, FileNotFoundExceptionActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(BayActivity.this, CloneNotSupportedExceptionActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(BayActivity.this, InflateExceptionActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(BayActivity.this, BufferOverflowExceptionActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(BayActivity.this, NoSuchMethodExceptionActivity.class));
+                        break;
+                    case 7:
+                        startActivity(new Intent(BayActivity.this, FileUriExposedExceptionActivity.class));
+                        break;
+                    case 8:
+                        startActivity(new Intent(BayActivity.this, FormatExceptionActivity.class));
+                        break;
+                    case 9:
+                        startActivity(new Intent(BayActivity.this, IllegalAccessErrorActivity.class));
+                        break;
+                    case 10:
+                        startActivity(new Intent(BayActivity.this, InterruptedExceptionActivity.class));
+                        break;
+                    case 11:
+                        startActivity(new Intent(BayActivity.this, TimeoutExceptionActivity.class));
+                        break;
+
+                }
             }
         });
         recyclerView.setAdapter(mAdapter);
