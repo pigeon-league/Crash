@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.baymax.crash.R;
+import com.baymax.crash.yong.cameraaccessexception.CameraAccessActivity;
+import com.baymax.crash.yong.charactercodingexception.CharacterCodingActivity;
+import com.baymax.crash.yong.classformaterror.ClassFormatActivity;
 import com.baymax.crash.yong.classnotfound.ClassNotFoundActivity;
 import com.baymax.crash.yong.illegalaccessexception.IllegalAccessActivity;
 import com.baymax.crash.yong.illegalargumentexception.IllegalArgActivity;
@@ -33,7 +36,8 @@ public class YongActivity extends AppCompatActivity {
             "StackOverflowError"));
     List<Class<?>> DATA_CLASS = new ArrayList<Class<?>>(Arrays.asList(
             ResourceNotFoundActivity.class, InvalidClassActivity.class, NumberFormatActivity.class,
-            IllegalAccessActivity.class, IllegalArgActivity.class, ClassNotFoundActivity.class));
+            IllegalAccessActivity.class, IllegalArgActivity.class, ClassNotFoundActivity.class,
+            CameraAccessActivity.class, CharacterCodingActivity.class, ClassFormatActivity.class));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
