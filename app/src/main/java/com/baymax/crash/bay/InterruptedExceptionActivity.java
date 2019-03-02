@@ -21,7 +21,26 @@ public class InterruptedExceptionActivity extends AppCompatActivity {
     }
 
     private void initCrash() {
-
+        WorkerThread t = new WorkerThread();
+        t.start();
+        synchronized (this)
+        {
+            try
+            {
+                wait(1000);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
+}
+
+class WorkerThread extends Thread
+{
+    public void run()
+    {
+//        externalLibrary.heavyComputation();
+    }
 }
