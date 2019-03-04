@@ -14,6 +14,7 @@ import java.util.zip.Inflater;
 public class DataFormatExceptionActivity extends AppCompatActivity {
 
     private TextView exceptionText;
+    private String content = "压缩字符串时，在解压缩时实现会有异常，decompresser.inflate(), 需要注意解压缩时，解压数据的内容，防止数据内容不为Base64编码数据或者内容为空\n\n";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class DataFormatExceptionActivity extends AppCompatActivity {
             Inflater decompresser = new Inflater();
             decompresser.setInput(output2);
             byte[] result = new byte[10000];
-            int resultLength = decompresser.inflate(result);
+            int resultLength = decompresser.inflate(result);//注意 这里 解压缩实现会有异常
             decompresser.end();
 
             // Decode the bytes into a String
@@ -82,10 +83,10 @@ public class DataFormatExceptionActivity extends AppCompatActivity {
 //                    String outputString = new String(result, 0, resultLength, "UTF-8");
 //                    System.out.println("Deflated String:" + outputString);
         } catch (UnsupportedEncodingException e) {
-            exceptionText.setText(Log.getStackTraceString(e.fillInStackTrace()));
+            exceptionText.setText(content + Log.getStackTraceString(e.fillInStackTrace()));
             e.printStackTrace();
         } catch (java.util.zip.DataFormatException e) {
-            exceptionText.setText(Log.getStackTraceString(e.fillInStackTrace()));
+            exceptionText.setText(content + Log.getStackTraceString(e.fillInStackTrace()));
             e.printStackTrace();
         }
     }

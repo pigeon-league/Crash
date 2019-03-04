@@ -14,6 +14,8 @@ import java.io.IOException;
 public class FileNotFoundExceptionActivity extends AppCompatActivity {
 
     private TextView exceptionText;
+    private String content = "文件权限没开,或者文件名不对，或者文件路径不对\n\n";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class FileNotFoundExceptionActivity extends AppCompatActivity {
             bufferedWriter = new BufferedWriter(new FileWriter("demo.text"));
             bufferedWriter.append(' ');
         } catch (IOException ex) {
-            exceptionText.setText(Log.getStackTraceString(ex.fillInStackTrace()));
+            exceptionText.setText(content + Log.getStackTraceString(ex.fillInStackTrace()));
             ex.printStackTrace();
         } finally {
             try {
@@ -72,7 +74,7 @@ public class FileNotFoundExceptionActivity extends AppCompatActivity {
                     bufferedWriter.close();
                 }
             } catch (IOException ex) {
-                exceptionText.setText(Log.getStackTraceString(ex.fillInStackTrace()));
+                exceptionText.setText(content + Log.getStackTraceString(ex.fillInStackTrace()));
                 ex.printStackTrace();
             }
         }
