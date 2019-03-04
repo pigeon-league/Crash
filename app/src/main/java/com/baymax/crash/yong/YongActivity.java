@@ -16,6 +16,7 @@ import com.baymax.crash.yong.classnotfound.ClassNotFoundActivity;
 import com.baymax.crash.yong.illegalaccessexception.IllegalAccessActivity;
 import com.baymax.crash.yong.illegalargumentexception.IllegalArgActivity;
 import com.baymax.crash.yong.invalidclassexception.InvalidClassActivity;
+import com.baymax.crash.yong.jsonexception.JSONExceptionActivity;
 import com.baymax.crash.yong.numberformatexception.NumberFormatActivity;
 import com.baymax.crash.yong.resourcenotfound.ResourceNotFoundActivity;
 
@@ -32,12 +33,13 @@ public class YongActivity extends AppCompatActivity {
     List<String> DATA_NAME = new ArrayList<>(Arrays.asList("Resources.NotFoundException",
             "InvalidClassException", "NumberFormatException", "IllegalAccessException",
             "IllegalArgumentException", "ClassNotFoundException", "CameraAccessException",
-            "CharacterCodingException", "ClassFormatError", "RuntimeException",
+            "CharacterCodingException", "ClassFormatError", "JSONException", "RuntimeException",
             "StackOverflowError"));
     List<Class<?>> DATA_CLASS = new ArrayList<Class<?>>(Arrays.asList(
             ResourceNotFoundActivity.class, InvalidClassActivity.class, NumberFormatActivity.class,
             IllegalAccessActivity.class, IllegalArgActivity.class, ClassNotFoundActivity.class,
-            CameraAccessActivity.class, CharacterCodingActivity.class, ClassFormatActivity.class));
+            CameraAccessActivity.class, CharacterCodingActivity.class, ClassFormatActivity.class,
+            JSONExceptionActivity.class));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
