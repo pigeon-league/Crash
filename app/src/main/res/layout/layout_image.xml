@@ -5,8 +5,15 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/exceptionText"
+        android:id="@+id/contentPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <MyImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
 </LinearLayout>
+
