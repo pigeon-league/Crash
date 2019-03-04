@@ -53,6 +53,7 @@
         <activity android:name=".yong.charactercodingexception.UTF8ToGBKActivity"/>
         <activity android:name=".yong.charactercodingexception.GBKToGB2312Activity"/>
         <activity android:name=".yong.classformaterror.ClassFormatActivity"/>
+        <activity android:name=".yong.jsonexception.JSONExceptionActivity"/>
 
         <receiver android:name=".yong.cameraaccessexception.MyDeviceAdminReceiver"
             android:label="@string/app_name"
