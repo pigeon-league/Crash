@@ -24,6 +24,7 @@ public class BufferOverflowExceptionActivity extends AppCompatActivity {
     }
 
     private void initCrash() {
+        //写入的长度超出了允许的长度：
         try {
             byte arr[] = ByteBuffer.allocate(2).putInt(1).array();
 
