@@ -54,6 +54,11 @@
         <activity android:name=".yong.charactercodingexception.GBKToGB2312Activity"/>
         <activity android:name=".yong.classformaterror.ClassFormatActivity"/>
         <activity android:name=".yong.jsonexception.JSONExceptionActivity"/>
+        <activity android:name=".yong.stackoverflow.StackOverflowActivity"/>
+        <activity android:name=".yong.stackoverflow.RecursionActivity"/>
+        <activity android:name=".yong.stackoverflow.MutualReferenceActivity"/>
+        <activity android:name=".yong.stackoverflow.MutualReference2Activity"/>
+        <activity android:name=".yong.runtimeexception.RunTimeActivity"/>
 
         <receiver android:name=".yong.cameraaccessexception.MyDeviceAdminReceiver"
             android:label="@string/app_name"
