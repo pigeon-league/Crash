@@ -16,7 +16,6 @@ public class IllegalAccessErrorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text);
 
         exceptionText = findViewById(R.id.exceptionText);
-
         initCrash();
     }
 
@@ -24,4 +23,16 @@ public class IllegalAccessErrorActivity extends AppCompatActivity {
 
     }
 
+}
+
+class employee{
+
+    @SuppressWarnings("unused")
+    private String sayHi(String Content){
+        return "hi," + Content;
+    }
+
+    protected String sayBye(String Content){
+        return "hi," + Content;
+    }
 }
