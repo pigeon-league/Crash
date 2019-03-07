@@ -2,6 +2,7 @@ package com.baymax.crash.bay;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.baymax.crash.R;
@@ -35,6 +36,7 @@ public class TimeoutExceptionActivity extends AppCompatActivity {
         try {
             futureTask.get(1, TimeUnit.MILLISECONDS);
         }catch (Exception e){
+            exceptionText.setText(Log.getStackTraceString(e.fillInStackTrace()));
             e.printStackTrace();
         }
     }
