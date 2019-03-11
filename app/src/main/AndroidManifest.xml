@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.baymax.crash">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
@@ -27,7 +28,7 @@
         <activity android:name=".bay.FileNotFoundExceptionActivity"/>
         <activity android:name=".bay.FileUriExposedExceptionActivity"/>
         <activity android:name=".bay.FormatExceptionActivity"/>
-        <activity android:name=".bay.IllegalAccessErrorActivity"/>
+        <activity android:name=".bay.ArrayStoreExceptionActivity"/>
         <activity android:name=".bay.InflateExceptionActivity"/>
         <activity android:name=".bay.InterruptedExceptionActivity"/>
         <activity android:name=".bay.NoSuchMethodExceptionActivity"/>

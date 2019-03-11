@@ -22,7 +22,7 @@ public class BayActivity extends AppCompatActivity {
     private String[] myDataset = {"DataFormatException", "EnumConstantNotPresentException", "FileNotFoundException",
                 "CloneNotSupportedException", "InflateException", "BufferOverflowException",
                 "NoSuchMethodException", "FileUriExposedException", "FormatException",
-                "IllegalAccessError", "InterruptedException", "TimeoutException",};
+                "ArrayStoreException", "InterruptedException", "TimeoutException",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class BayActivity extends AppCompatActivity {
                         startActivity(new Intent(BayActivity.this, FormatExceptionActivity.class));
                         break;
                     case 9:
-                        startActivity(new Intent(BayActivity.this, IllegalAccessErrorActivity.class));
+                        startActivity(new Intent(BayActivity.this, ArrayStoreExceptionActivity.class));
                         break;
                     case 10:
                         startActivity(new Intent(BayActivity.this, InterruptedExceptionActivity.class));

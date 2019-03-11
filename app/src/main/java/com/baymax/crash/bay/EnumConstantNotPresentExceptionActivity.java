@@ -21,6 +21,7 @@ public class EnumConstantNotPresentExceptionActivity extends AppCompatActivity {
         exceptionText = findViewById(R.id.exceptionText);
 
         initCrash();
+        System.out.println(ResultClass.class.getAnnotation(ResultAnnotation.class).value());
     }
 
     private void initCrash() {
