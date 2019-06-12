@@ -476,8 +476,8 @@ android.hardware.camera2.CameraAccessException
 
 - 预防措施： 
 
-1. 在使用相机设备的时候，try-catch该异常；
-2. 在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注：CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
+- 1)	在使用相机设备的时候，try-catch该异常；
+- 2)	在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注：CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
 
 ## 17、MalformedinputException
 
@@ -557,8 +557,8 @@ java.lang.StackOverflowError
 
 - 预防措施： 
 
-1. 谨慎使用递归调用；
-2. 避免对象之间相互引用，比如：2.1、对象之间相互引用且循环实例化，即对象A实例化时会实例化B，而实例化B时又实例化A。2.2、对象之间相互引用且输出对象时相互调用，即在对象A的toString()方法中会输出对象B，而对象B的toString()方法中又会输出对象A。
+- 1)	谨慎使用递归调用；
+- 2)	避免对象之间相互引用，比如：1、对象之间相互引用且循环实例化，即对象A实例化时会实例化B，而实例化B时又实例化A。2、对象之间相互引用且输出对象时相互调用，即在对象A的toString()方法中会输出对象B，而对象B的toString()方法中又会输出对象A。
 
 ## 21、CalledFromWrongThreadException
 
@@ -614,13 +614,13 @@ java.lang.ArithmeticException
 
 - 原因分析：
 
-1. 当做除法运算时 除数为0 会导致运算异常；
-2. BigDecimal（商业运算）做除法运算不能整除时，会导致运算异常 (divide方法)
+- 1)	当做除法运算时 除数为0 会导致运算异常；
+- 2)	BigDecimal（商业运算）做除法运算不能整除时，会导致运算异常 (divide方法)
 
 - 预防措施： 
 
-1. 在做常规除法运算时，需要对除数做0的校验；
-2. 在用BigDecimal的divide 方法时 要传此方法的第三位参数 表示舍入的模式。
+- 1)	在做常规除法运算时，需要对除数做0的校验；
+- 2)	在用BigDecimal的divide 方法时 要传此方法的第三位参数 表示舍入的模式。
 
 ## 24、ArrayIndexOutOfBoundsException
 
@@ -760,9 +760,9 @@ java.util.ConcurrentModificationException
 
 - 预防措施： 
 
-1. 避免遍历的同时做修改的操作；
-2. 如果有需要修改的操作调用迭代器的api ，此api会在修改完后同步修改expectedModCount的值；
-3. 使用CopyOnWriteArrayList(线程安全，读写分离)容器代替ArrayList。
+- 1)	避免遍历的同时做修改的操作；
+- 2)	如果有需要修改的操作调用迭代器的api ，此api会在修改完后同步修改expectedModCount的值；
+- 3)	使用CopyOnWriteArrayList(线程安全，读写分离)容器代替ArrayList。
 
 ## 31、NullPointerException
 
@@ -782,11 +782,11 @@ java.lang.NullPointerException
 
 - 预防措施： 
 
-1. equals方法把确定不是null的作为对象调用，尽量当参数而不是对象使用；
-2. 在两者返回相同结果的时候偏向使用valueof()而非toString()；
-3. 使用空安全方法，如StringUtils.isEmpty(null)；
-4. 避免从方法中返回空指针，而是返回空collection或者空数组；
-5. 避免没有必要的自动包装和自动解包，如：Person ram = new Person(“ram”); int phone = ram.getPhone(); 有可能getPhone返回null。
+- 1)	equals方法把确定不是null的作为对象调用，尽量当参数而不是对象使用；
+- 2)	在两者返回相同结果的时候偏向使用valueof()而非toString()；
+- 3)	使用空安全方法，如StringUtils.isEmpty(null)；
+- 4)	避免从方法中返回空指针，而是返回空collection或者空数组；
+- 5)	避免没有必要的自动包装和自动解包，如：Person ram = new Person(“ram”); int phone = ram.getPhone(); 有可能getPhone返回null。
 
 ## 32、OutOfMemoryError
 
@@ -802,15 +802,14 @@ java.lang.OutOfMemoryError
 
 - 原因分析：
 
-1. 由于大文件如大图片的操作 真的超过分配内存；
-2. 由于内存不能及时释放造成内存累增 造成内存耗尽；
+- 1)	由于大文件如大图片的操作 真的超过分配内存；
+- 2)	由于内存不能及时释放造成内存累增 造成内存耗尽；
 
 - 预防措施： 
 
-1. 应避免在activity或fragment之外传递context对象；
-2. 不要创建静态的context 或 view对象，或者将二者存储于静态变量中；
-3. 一定要在界面销毁时 取消注册监听；
-4. 不要在异步任务中持有activity的强引用；
-5. 尽可能的用getApplicationContext 而不是activity的context；
-6. 尽量避免非静态内部类的使用，内部类会持有当前类的引用，如果界面关闭而内部类还在进行操作就会导致activity的内存泄露。
-
+- 1)	应避免在activity或fragment之外传递context对象；
+- 2)	不要创建静态的context 或 view对象，或者将二者存储于静态变量中；
+- 3)	一定要在界面销毁时 取消注册监听；
+- 4)	不要在异步任务中持有activity的强引用；
+- 5)	尽可能的用getApplicationContext 而不是activity的context；
+- 6)	尽量避免非静态内部类的使用，内部类会持有当前类的引用，如果界面关闭而内部类还在进行操作就会导致activity的内存泄露。
