@@ -435,8 +435,8 @@ java.lang.IllegalArgumentException
 
 - 预防措施： 
 
-1) 当使用不熟悉的API方法时，点击进入API源码，看看API注释中是否说明会抛出异常，如果会，建议try-catch这些异常；
-2) 当开发者传入给API方法的参数是后台等返的时，尤其要注意try-catch这些API方法的异常。
+- 1)	当使用不熟悉的API方法时，点击进入API源码，看看API注释中是否说明会抛出异常，如果会，建议try-catch这些异常；
+- 2)	当开发者传入给API方法的参数是后台等返的时，尤其要注意try-catch这些API方法的异常。
 
 ## 15、ClassNotFoundException
 
