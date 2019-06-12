@@ -435,7 +435,8 @@ java.lang.IllegalArgumentException
 
 - 预防措施： 
 
-1、当使用不熟悉的API方法时，点击进入API源码，看看API注释中是否说明会抛出异常，如果会，建议try-catch这些异常；2、当开发者传入给API方法的参数是后台等返的时，尤其要注意try-catch这些API方法的异常。
+1. 当使用不熟悉的API方法时，点击进入API源码，看看API注释中是否说明会抛出异常，如果会，建议try-catch这些异常；
+2. 当开发者传入给API方法的参数是后台等返的时，尤其要注意try-catch这些API方法的异常。
 
 ## 15、ClassNotFoundException
 
@@ -475,7 +476,8 @@ android.hardware.camera2.CameraAccessException
 
 - 预防措施： 
 
-1、在使用相机设备的时候，try-catch该异常；2、在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注： CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
+1. 在使用相机设备的时候，try-catch该异常；
+2. 在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注：CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
 
 ## 17、MalformedinputException
 
@@ -555,4 +557,260 @@ java.lang.StackOverflowError
 
 - 预防措施： 
 
-1、谨慎使用递归调用；2、避免对象之间相互引用，比如：2.1、对象之间相互引用且循环实例化，即对象A实例化时会实例化B，而实例化B时又实例化A。2.2、对象之间相互引用且输出对象时相互调用，即在对象A的toString()方法中会输出对象B，而对象B的toString()方法中又会输出对象A。
+1. 谨慎使用递归调用；
+2. 避免对象之间相互引用，比如：2.1、对象之间相互引用且循环实例化，即对象A实例化时会实例化B，而实例化B时又实例化A。2.2、对象之间相互引用且输出对象时相互调用，即在对象A的toString()方法中会输出对象B，而对象B的toString()方法中又会输出对象A。
+
+## 21、CalledFromWrongThreadException
+
+继承于android.util.AndroidRuntimeException
+
+- 堆栈关键字：
+
+android.view.ViewRootImpl$CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views
+
+- 发生原因：
+
+非主线程中操作UI
+
+- 原因分析：
+
+android View 在绘制时会先通过checkThread 方法来校验当前线程是否和创建view的线程（主线程）一致，不一致则抛出此异常
+
+- 预防措施： 
+
+建议不要在子线程中操作UI。
+
+## 22、ClassCastException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+java.lang.ClassCastException: web.eg.com.pocdemo.MainActivity$SuperClass cannot be cast to web.eg.com.pocdemo.MainActivity$SubClass
+
+- 发生原因：
+
+类型转换错误
+
+- 原因分析：
+
+java允许类型的转换，并且大多数是在编译的时候就会进行验证（如明确的类型转换的时候），某些转换是在运行时验证（如类型不明确时的转换就需要在运行时验证），java虚拟机在校验时如果发现不兼容就会引发ClassCaseException
+
+- 预防措施： 
+
+在类型转换之前做类型校验。
+
+## 23、ArithmeticException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+java.lang.ArithmeticException
+
+- 发生原因：
+
+出现异常运算时会引发此异常
+
+- 原因分析：
+
+1. 当做除法运算时 除数为0 会导致运算异常；
+2. BigDecimal（商业运算）做除法运算不能整除时，会导致运算异常 (divide方法)
+
+- 预防措施： 
+
+1. 在做常规除法运算时，需要对除数做0的校验；
+2. 在用BigDecimal的divide 方法时 要传此方法的第三位参数 表示舍入的模式。
+
+## 24、ArrayIndexOutOfBoundsException
+
+继承于java.lang.IndexOutOfBoundsException
+
+- 堆栈关键字：
+
+java.lang.ArrayIndexOutOfBoundsException
+
+- 发生原因：
+
+非法索引引用（索引小于0或者索引大于数组长度） 
+
+- 原因分析：
+
+通过研究源代码在修改、获取、删除之前会先校验索引是否在0~length的区间内，否则会引发此异常。
+
+- 预防措施： 
+
+在对数组或者由数组扩展的结构做修改、获取、删除操作时，先对传入的索引进行校验。
+
+## 25、StringIndexOutOfBoundsException
+
+继承于java.lang.IndexOutOfBoundsException
+
+- 堆栈关键字：
+
+java.lang.StringIndexOutOfBoundsException
+
+- 发生原因：
+
+非法索引引用（索引小于0或者索引大于数组长度）
+
+- 原因分析：
+
+通过源码可以知晓，在对String做subString、charAt、codePointAt、codePointBefore、getChars、getBytes等操作时，会先校验索引是否在0~length区间内，否则会引发此异常
+
+- 预防措施： 
+
+在对String做sub或charAt等操作时，先校验索引是否合法。
+
+## 26、NetworkOnMainThreadException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+android.os.NetworkOnMainThreadException
+
+- 发生原因：
+
+在主线程中同步方式发网络请求
+
+- 原因分析：
+
+在4.0之后使用网络时会用到StricMode中的AndroidBlockGuardPolicy的策略检查，这个策略会检查当前是否在主线程 ，如果是就会引发NetworkOnMainThreadException
+
+- 预防措施： 
+
+禁止在主线程中同步发网络请求。
+
+## 27、ParseException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+java.text.ParseException
+
+- 发生原因：
+
+没有按指定日期格式导致转换异常
+
+- 原因分析：
+
+在SimpleDateForm的parse方法中会根据解析结果是否是正确的日期格式来决定是否要抛出此异常
+
+- 预防措施： 
+
+在能保证日期格式的情况下保证日期格式正确，否则加异常保护。
+
+## 28、BufferUnderflowException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+java.nio.BufferUnderflowException
+
+- 发生原因：
+
+读写长度大于buffer剩余长度
+
+- 原因分析：
+
+通过源码可知，在读和写的操作时会判断，此次读写长度是否大于剩余长度（length > remaining()）
+
+- 预防措施： 
+
+在用Buffer的读写之前先进行长度的合法判断。
+
+## 29、ActivityNotFoundException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+android.content.ActivityNotFoundException
+
+- 发生原因：
+
+没有在manifest中注册或者隐式启动注册没有android.intent.category.DEAULT
+
+- 原因分析：
+
+android显示启动activity时，需要在manifest中明确注册，隐式启动时还需要注册标签android.intent.category.DEAULT
+
+- 预防措施： 
+
+支持显示启动明确注册；支持隐式启动明确注册且明确注册default的action。
+
+## 30、ConcurrentModificationException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+java.util.ConcurrentModificationException
+
+- 发生原因：
+
+迭代器遍历的同时做list删除和新增操作
+
+- 原因分析：
+
+通过分析源码迭代器的next每次都会校验expectedModCount是否等于modcount，如果不相等会引发此异常
+
+- 预防措施： 
+
+1. 避免遍历的同时做修改的操作；
+2. 如果有需要修改的操作调用迭代器的api ，此api会在修改完后同步修改expectedModCount的值；
+3. 使用CopyOnWriteArrayList(线程安全，读写分离)容器代替ArrayList。
+
+## 31、NullPointerException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+java.lang.NullPointerException
+
+- 发生原因：
+
+对象未初始化或者为空时，调用对象的方法或属性
+
+- 原因分析：
+
+基本类型不初始化，java虚拟机是编译不通过的（手动置为null的除外），所以大部分空指针都发生在对象的操作
+
+- 预防措施： 
+
+1. equals方法把确定不是null的作为对象调用，尽量当参数而不是对象使用；
+2. 在两者返回相同结果的时候偏向使用valueof()而非toString()；
+3. 使用空安全方法，如StringUtils.isEmpty(null)；
+4. 避免从方法中返回空指针，而是返回空collection或者空数组；
+5. 避免没有必要的自动包装和自动解包，如：Person ram = new Person(“ram”); int phone = ram.getPhone(); 有可能getPhone返回null。
+
+## 32、OutOfMemoryError
+
+继承于java.lang.Error
+
+- 堆栈关键字：
+
+java.lang.OutOfMemoryError
+
+- 发生原因：
+
+在创建新的对象时，堆内存中的空间不足以存放新创建的对象时发生
+
+- 原因分析：
+
+1. 由于大文件如大图片的操作 真的超过分配内存；
+2. 由于内存不能及时释放造成内存累增 造成内存耗尽；
+
+- 预防措施： 
+
+1. 应避免在activity或fragment之外传递context对象；
+2. 不要创建静态的context 或 view对象，或者将二者存储于静态变量中；
+3. 一定要在界面销毁时 取消注册监听；
+4. 不要在异步任务中持有activity的强引用；
+5. 尽可能的用getApplicationContext 而不是activity的context；
+6. 尽量避免非静态内部类的使用，内部类会持有当前类的引用，如果界面关闭而内部类还在进行操作就会导致activity的内存泄露。
+
