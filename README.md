@@ -356,3 +356,203 @@ Java对象的finalize()方法处理超时。 Java的Object对象中，有一个f
 - 预防措施： 
 
 根据实际情况分析，是否因为操作不当，在finalize()中执行了耗时操作。在应用中可以结合减少耗时操作和这种抑制finalize()超时异常的方式。另外，减少内存占用，避免不必要的对象创建，消除内存泄漏问题，减少GC压力。
+
+## 11、Resources.NotFoundException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+android.content.res.Resources$NotFoundException
+
+- 发生原因：
+
+根据传入的资源id不能找到对应的资源
+
+- 原因分析：
+
+被调用方法会根据传入的资源id去找到对应xml资源文件中定义的资源，如果根据资源id找不到相应的定义的资源，则会报Resources.NotFoundException
+
+- 预防措施： 
+
+通常这种情况下，编译器会在设置参数的代码处给出警告，比如：LayoutInflater.from(this).inflate(R.id.listview, null, false)，方法第一个参数应该使用R.layout, 误使用R.id；开发者多加注意，同时点击进入方法源代码看看参数具体需要什么类型资源id，可以有效避免该类错误发生。
+
+## 12、NumberFormatException
+
+继承于java.lang.IllegalArgumentException
+
+- 堆栈关键字：
+
+java.lang.NumberFormatException
+
+- 发生原因：
+
+传入的参数格式不对
+
+- 原因分析：
+
+被调用方法会将传入的参数按照一定的规则转换为其他格式的数据。如果传入的参数不符合转换要求的规则，则会报上述异常
+
+- 预防措施： 
+
+通常这个异常出现在客户端将字符串类型参数解析成int或者long类型时，比如：Integer.parseInt(“1a”)，字符串“1a”中“a”不能按照十进制规则转换为数字。所以如果要转换的字符串来自后台等，开发者应该在这些情况中加上try-catch来防护。
+
+## 13、IllegalAccessException
+
+继承于java.lang.ReflectiveOperationException
+
+- 堆栈关键字：
+
+java.lang.IllegalAccessException
+
+- 发生原因：
+
+反射时，调用了不能访问的类、方法或者成员变量
+
+- 原因分析：
+
+反射时，正常情况下私有的类、方法或者成员变量是不能访问的，如果直接访问，则会报上述异常
+
+- 预防措施： 
+
+在通过反射使用对象的私有成员之前，调用私有成员的setAccessible(true)方法，使得对象有权限可以访问该私有成员。
+
+## 14、IllegalArgumentException
+
+继承于java.lang.RuntimeException
+
+- 堆栈关键字：
+
+java.lang.IllegalArgumentException
+
+- 发生原因：
+
+传入的方法参数不合法
+
+- 原因分析：
+
+一些系统方法对传入的参数有一定的规则要求，如果传入的参数不符合规则，则会报上述异常
+
+- 预防措施： 
+
+1、当使用不熟悉的API方法时，点击进入API源码，看看API注释中是否说明会抛出异常，如果会，建议try-catch这些异常；2、当开发者传入给API方法的参数是后台等返的时，尤其要注意try-catch这些API方法的异常。
+
+## 15、ClassNotFoundException
+
+继承于java.lang.ReflectiveOperationException
+
+- 堆栈关键字：
+
+java.lang.ClassNotFoundException
+
+- 发生原因：
+
+程序想要加载未定义的类
+
+- 原因分析：
+
+当程序想要通过类的字符串名称去加载该类时，如果字符串名称对应的类未定义过，则会报上述异常
+
+- 预防措施： 
+
+避免使用该方式去加载类，比如：Class<?> refectClass = Class.forName("ABC”)。如果不能避免，建议加上try-catch。
+
+## 16、CameraAccessException
+
+继承于AndroidException
+
+- 堆栈关键字：
+
+android.hardware.camera2.CameraAccessException
+
+- 发生原因：
+
+相机设备不可用
+
+- 原因分析：
+
+程序想要访问的相机设备不能查询或者打开，或者之前建立了相机连接不再合法时，则会报上述异常
+
+- 预防措施： 
+
+1、在使用相机设备的时候，try-catch该异常；2、在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注： CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
+
+## 17、MalformedinputException
+
+继承于java.io.IOException
+
+- 堆栈关键字：
+
+java.nio.charset.MalformedInputException
+
+- 发生原因：
+
+字符编码或者解码发生错误
+
+- 原因分析：
+
+MalformedInputException异常是因为“半个中文问题”。比如，UTF-8编码一个中文占3个字节，而GBK编码一个中文占2个字节。当先用UTF-8把奇数个中文转换为字节数组时，再使用GBK对该字节数组编码时，因为转换的中文字节个数不是2的倍数，就会出现问题
+
+- 预防措施： 
+
+保持代码中数据编码一致，在涉及编码或者解码的地方加try-catch。
+
+## 18、JSONException
+
+继承于java.lang.Exception
+
+- 堆栈关键字：
+
+org.json.JSONException
+
+- 发生原因：
+
+JSON数据解析错误
+
+- 原因分析：
+
+调用系统方法解析json数据时，如果json数据格式有误，则会报上述异常
+
+- 预防措施： 
+
+在涉及JSON数据解析的地方加try-catch。
+
+## 19、RuntimeException
+
+继承于java.lang.Exception
+
+- 堆栈关键字：
+
+java.lang.RuntimeException
+
+- 发生原因：
+
+java虚拟机的操作报错
+
+- 原因分析：
+
+通常系统内部API调用的时候，会try-catch RuntimeException，然后将RuntimeException转换为其具体子类异常抛出，所以。RuntimeException的常见子类异常比如：NullPointerException、IllegalArgumentException、NumberFormatException等
+
+- 预防措施： 
+
+由于RuntimeException通常都是由其子类的形式抛出，所以其预防措施即是预防其子类异常。
+
+## 20、StackOverflowError
+
+继承于java.lang.VirtualMachineError
+
+- 堆栈关键字：
+
+java.lang.StackOverflowError
+
+- 发生原因：
+
+堆栈内存溢出
+
+- 原因分析：
+
+堆栈内存由系统自动分配释放，存放函数的参数值、局部变量的值等。函数、局部变量等被调用的时候占用堆栈内存，调用完毕由系统释放内存。如果程序发生循环调用，则会导致堆栈内存溢出
+
+- 预防措施： 
+
+1、谨慎使用递归调用；2、避免对象之间相互引用，比如：2.1、对象之间相互引用且循环实例化，即对象A实例化时会实例化B，而实例化B时又实例化A。2.2、对象之间相互引用且输出对象时相互调用，即在对象A的toString()方法中会输出对象B，而对象B的toString()方法中又会输出对象A。
