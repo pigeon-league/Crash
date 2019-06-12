@@ -459,7 +459,7 @@ java.lang.ClassNotFoundException
 
 ## 16、CameraAccessException
 
-继承于AndroidException
+继承于android.util.AndroidException
 
 - 堆栈关键字：
 
