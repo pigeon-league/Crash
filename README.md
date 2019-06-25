@@ -1,5 +1,26 @@
 # APP Crash 研究报告
 
+## 1、研究背景
+
+### 1.1、什么是Crash
+Crash 即闪退，多指在移动设备中，在打开或运行应用程序过程中出现突然中断的情况。
+
+### 1.2、为什么会Crash
+由于出现异常且没有被应用程序捕捉住引起进程被杀。
+
+### 1.3、Crash的影响
+- Crash用户可感知，也正是如此可能会引起投诉甚至用户流失
+- 在重要流程（如启动）出现Crash会导致用户无法使用整个app
+- 很可能需要重新发版本并强制升级，最终会导致用户流失
+
+## 2、研究目标
+通过研究具体Exception，分析发生Exception的原因，从而找到预防Exception的办法。
+
+## 3、研究范围
+- 常见的Exception
+- 听云上出现概率高的Exception
+详见Android_Exception表格
+
 ## 1、DataFormatException
 
 继承于java.lang.Exception
