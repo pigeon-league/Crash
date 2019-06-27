@@ -432,7 +432,7 @@ java.lang.NumberFormatException
 
 - 预防措施： 
 
-通常这个异常出现在客户端将字符串类型参数解析成int或者long类型时，比如：Integer.parseInt(“1a”)，字符串“1a”中“a”不能按照十进制规则转换为数字。所以如果要转换的字符串来自后台等，开发者应该在这些情况中加上try-catch来防护。
+通常这个异常出现在客户端将字符串类型参数解析成int或者long类型时，比如：Integer.parseInt(“1a”)，字符串“1a”中“a”不能按照十进制规则转换为数字。所以可以先使用正则检测参数是否正确，再调用相应方法。
 
 ### 4.13、IllegalAccessException
 
@@ -471,8 +471,7 @@ java.lang.IllegalArgumentException
 一些系统方法对传入的参数有一定的规则要求，如果传入的参数不符合规则，则会报上述异常
 
 - 预防措施： 
-- 1)	当使用不熟悉的API方法时，点击进入API源码，看看API注释中是否说明会抛出异常，如果会，建议try-catch这些异常；
-- 2)	当开发者传入给API方法的参数是后台等返的时，尤其要注意try-catch这些API方法的异常。
+按照参数需要的规则，先对参数进行格式校验。
 
 ### 4.15、ClassNotFoundException
 
@@ -492,7 +491,7 @@ java.lang.ClassNotFoundException
 
 - 预防措施： 
 
-避免使用该方式去加载类，比如：Class<?> refectClass = Class.forName("ABC”)。如果不能避免，建议加上try-catch。
+避免使用这种反射的方式去加载类，比如：Class<?> refectClass = Class.forName("ABC”)。
 
 ### 4.16、CameraAccessException
 
@@ -511,8 +510,7 @@ android.hardware.camera2.CameraAccessException
 程序想要访问的相机设备不能查询或者打开，或者之前建立了相机连接不再合法时，则会报上述异常
 
 - 预防措施： 
-- 1)	在使用相机设备的时候，try-catch该异常；
-- 2)	在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注：CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
+在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注：CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
 
 ### 4.17、MalformedinputException
 
