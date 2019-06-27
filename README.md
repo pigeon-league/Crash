@@ -56,7 +56,13 @@ java.util.zip.DataFormatException: incorrect header check
 
 - 预防措施：
 
-检查需要压缩的数据内容
+检查需要压缩的数据内容，不为空，并且为Base64编码（自行判断）。
+注：
+Base64编码之后的字符串具有以下特点：
+
+字符串只可能包含A-Z，a-z，0-9，+，/，=字符
+字符串长度是4的倍数
+=只会出现在字符串最后，可能没有或者一个等号或者两个等号
 
 #### case 2
 
@@ -227,12 +233,10 @@ java.lang.NoSuchMethodException
 - 1、	错写方法名
 - 2、	方法定义为private或者protect类型
 - 3、	参数传递错误，参数传递顺序错误
-- 4、	配置文件或者JAR包问题
 - 预防措施： 
 - 1、	检查代码中是否有此方法
 - 2、	检查该方法是否为public
 - 3、	检查此方法是否传递了参数，确认是否有问题
-- 4、	检查JAR包
 
 ### 4.6、InflateException
 
@@ -306,6 +310,8 @@ android.os.FileUriExposedException
 - 1)	在Manifest中声明FileProvider。
 - 2)	在res下的xml文件夹中，新建xml文件，配置好路径。
 - 3)	在代码中调用FileProvider，进行操作。
+关于Android 7.0相机FileUriExposedException解决（附链接如下）
+https://www.cnblogs.com/kezhuang/p/8706988.html
 
 ### 4.9、ArrayStoreException
 
