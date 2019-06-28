@@ -494,7 +494,7 @@ java.lang.ClassNotFoundException
 
 - 预防措施： 
 
-避免使用这种反射的方式去加载类，比如：Class<?> refectClass = Class.forName("ABC”)。
+避免使用这种反射的方式去加载类，比如：Class<?> refectClass = Class.forName("ABC”)。另外在调用方法的地方加try-catch，否则编译器会报错。
 
 ### 4.16、MalformedinputException
 
@@ -534,7 +534,7 @@ JSON数据解析错误
 
 - 预防措施： 
 
-在涉及JSON数据解析的地方加try-catch，否则编译器会报错。
+保证JSON数据格式，字段等都正确。在涉及JSON数据解析的地方加try-catch，否则编译器会报错。
 
 ### 4.18、RuntimeException
 
