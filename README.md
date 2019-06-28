@@ -705,7 +705,7 @@ android.os.NetworkOnMainThreadException
 
 - 原因分析：
 
-在4.0之后使用网络时会用到StricMode中的AndroidBlockGuardPolicy的策略检查，这个策略会检查当前是否在主线程 ，如果是就会引发NetworkOnMainThreadException
+在4.0之后使用网络时会用到StricMode中的AndroidBlockGuardPolicy的策略检查，这个策略会检查当前是否在主线程 ，如果不是就会引发NetworkOnMainThreadException
 
 - 预防措施： 
 
@@ -814,6 +814,7 @@ java.lang.NullPointerException
 - 3)	使用空安全方法，如StringUtils.isEmpty(null)；
 - 4)	避免从方法中返回空指针，而是返回空collection或者空数组；
 - 5)	避免没有必要的自动包装和自动解包，如：Person ram = new Person(“ram”); int phone = ram.getPhone(); 有可能getPhone返回null。
+- 6） 在对后台数据 以及 引用对象时 尽可能做判空的异常处理
 
 ### 4.32、OutOfMemoryError
 
