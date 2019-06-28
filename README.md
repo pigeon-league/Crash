@@ -725,7 +725,7 @@ java.text.ParseException
 
 - 原因分析：
 
-在SimpleDateForm的parse方法中会根据解析结果是否是正确的日期格式来决定是否要抛出此异常
+在SimpleDateFormate的parse方法中会根据解析结果是否是正确的日期格式来决定是否要抛出此异常
 
 - 预防措施： 
 
