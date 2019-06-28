@@ -17,12 +17,15 @@ Crash 即闪退，多指在移动设备中，在打开或运行应用程序过�
 - 很可能需要重新发版本并强制升级，最终会导致用户流失
 
 ### 1.4、Crash分类（见类图）
+
 - Throwable 有两个主要的子类 Error 和 Exception
   Error:这种异常被设计成不被捕捉，产生于JVM自身(OutOfMerroyError)
   Exception:能被程序本身所处理
   Exception 分为运行时异常（隐式异常） 和非运行时异常（显式异常）
   运行时异常： java编译器不会检查它，一般由程序逻辑错误引起的，程序应该从逻辑角度尽可能的避免这类异常 （如 空指针）
   非运行异常： 从程序语法角度上必须处理的异常 不处理则编译不通过（如 IOException）
+
+  ![类关系图](/Users/admin/Desktop/类关系图.jpg)
 
 ## 2、研究目标
 
@@ -310,8 +313,8 @@ android.os.FileUriExposedException
 - 1)	在Manifest中声明FileProvider。
 - 2)	在res下的xml文件夹中，新建xml文件，配置好路径。
 - 3)	在代码中调用FileProvider，进行操作。
-关于Android 7.0相机FileUriExposedException解决（附链接如下）
-https://www.cnblogs.com/kezhuang/p/8706988.html
+  关于Android 7.0相机FileUriExposedException解决（附链接如下）
+  https://www.cnblogs.com/kezhuang/p/8706988.html
 
 ### 4.9、ArrayStoreException
 
@@ -471,7 +474,7 @@ java.lang.IllegalArgumentException
 一些系统方法对传入的参数有一定的规则要求，如果传入的参数不符合规则，则会报上述异常
 
 - 预防措施： 
-按照参数需要的规则，先对参数进行格式校验。
+  按照参数需要的规则，先对参数进行格式校验。
 
 ### 4.15、ClassNotFoundException
 
@@ -493,26 +496,7 @@ java.lang.ClassNotFoundException
 
 避免使用这种反射的方式去加载类，比如：Class<?> refectClass = Class.forName("ABC”)。
 
-### 4.16、CameraAccessException
-
-继承于android.util.AndroidException
-
-- 堆栈关键字：
-
-android.hardware.camera2.CameraAccessException
-
-- 发生原因：
-
-相机设备不可用
-
-- 原因分析：
-
-程序想要访问的相机设备不能查询或者打开，或者之前建立了相机连接不再合法时，则会报上述异常
-
-- 预防措施： 
-在相机设备断开连接，即onDisconnected回调方法被调用时，调用CameraDevice的close方法关闭相机设备。注：CameraAccessException只有在使用Camera2API(5.0及以上)时，才会出现。
-
-### 4.17、MalformedinputException
+### 4.16、MalformedinputException
 
 继承于java.io.IOException
 
@@ -530,9 +514,9 @@ MalformedInputException异常是因为“半个中文问题”。比如，UTF-8�
 
 - 预防措施： 
 
-保持代码中数据编码一致，在涉及编码或者解码的地方加try-catch。
+保持代码中数据编码一致。另外在涉及编码或者解码的地方加try-catch，否则编译器会报错。
 
-### 4.18、JSONException
+### 4.17、JSONException
 
 继承于java.lang.Exception
 
@@ -550,9 +534,9 @@ JSON数据解析错误
 
 - 预防措施： 
 
-在涉及JSON数据解析的地方加try-catch。
+在涉及JSON数据解析的地方加try-catch，否则编译器会报错。
 
-### 4.19、RuntimeException
+### 4.18、RuntimeException
 
 继承于java.lang.Exception
 
@@ -572,7 +556,7 @@ java虚拟机的操作报错
 
 由于RuntimeException通常都是由其子类的形式抛出，所以其预防措施即是预防其子类异常。
 
-### 4.20、StackOverflowError
+### 4.19、StackOverflowError
 
 继承于java.lang.VirtualMachineError
 
@@ -592,7 +576,7 @@ java.lang.StackOverflowError
 - 1)	谨慎使用递归调用；
 - 2)	避免对象之间相互引用，比如：1、对象之间相互引用且循环实例化，即对象A实例化时会实例化B，而实例化B时又实例化A。2、对象之间相互引用且输出对象时相互调用，即在对象A的toString()方法中会输出对象B，而对象B的toString()方法中又会输出对象A。
 
-### 4.21、CalledFromWrongThreadException
+### 4.20、CalledFromWrongThreadException
 
 继承于android.util.AndroidRuntimeException
 
@@ -612,7 +596,7 @@ android View 在绘制时会先通过checkThread 方法来校验当前线程是�
 
 建议不要在子线程中操作UI。
 
-### 4.22、ClassCastException
+### 4.21、ClassCastException
 
 继承于java.lang.RuntimeException
 
@@ -632,7 +616,7 @@ java允许类型的转换，并且大多数是在编译的时候就会进行验�
 
 在类型转换之前做类型校验。
 
-### 4.23、ArithmeticException
+### 4.22、ArithmeticException
 
 继承于java.lang.RuntimeException
 
@@ -651,7 +635,7 @@ java.lang.ArithmeticException
 - 1)	在做常规除法运算时，需要对除数做0的校验；
 - 2)	在用BigDecimal的divide 方法时 要传此方法的第三位参数 表示舍入的模式。
 
-### 4.24、ArrayIndexOutOfBoundsException
+### 4.23、ArrayIndexOutOfBoundsException
 
 继承于java.lang.IndexOutOfBoundsException
 
@@ -671,7 +655,7 @@ java.lang.ArrayIndexOutOfBoundsException
 
 在对数组或者由数组扩展的结构做修改、获取、删除操作时，先对传入的索引进行校验。
 
-### 4.25、StringIndexOutOfBoundsException
+### 4.24、StringIndexOutOfBoundsException
 
 继承于java.lang.IndexOutOfBoundsException
 
@@ -691,7 +675,7 @@ java.lang.StringIndexOutOfBoundsException
 
 在对String做sub或charAt等操作时，先校验索引是否合法。
 
-### 4.26、NetworkOnMainThreadException
+### 4.25、NetworkOnMainThreadException
 
 继承于java.lang.RuntimeException
 
@@ -705,13 +689,13 @@ android.os.NetworkOnMainThreadException
 
 - 原因分析：
 
-在4.0之后使用网络时会用到StricMode中的AndroidBlockGuardPolicy的策略检查，这个策略会检查当前是否在主线程 ，如果不是就会引发NetworkOnMainThreadException
+在4.0之后使用网络时会用到StricMode中的AndroidBlockGuardPolicy的策略检查，这个策略会检查当前是否在主线程 ，如果是就会引发NetworkOnMainThreadException
 
 - 预防措施： 
 
 禁止在主线程中同步发网络请求。
 
-### 4.27、ParseException
+### 4.26、ParseException
 
 继承于java.lang.RuntimeException
 
@@ -731,7 +715,7 @@ java.text.ParseException
 
 在能保证日期格式的情况下保证日期格式正确，否则加异常保护。
 
-### 4.28、BufferUnderflowException
+### 4.27、BufferUnderflowException
 
 继承于java.lang.RuntimeException
 
@@ -751,7 +735,7 @@ java.nio.BufferUnderflowException
 
 在用Buffer的读写之前先进行长度的合法判断。
 
-### 4.29、ActivityNotFoundException
+### 4.28、ActivityNotFoundException
 
 继承于java.lang.RuntimeException
 
@@ -771,7 +755,7 @@ android显示启动activity时，需要在manifest中明确注册，隐式启动
 
 支持显示启动明确注册；支持隐式启动明确注册且明确注册default的action。
 
-### 4.30、ConcurrentModificationException
+### 4.29、ConcurrentModificationException
 
 继承于java.lang.RuntimeException
 
@@ -792,7 +776,7 @@ java.util.ConcurrentModificationException
 - 2)	如果有需要修改的操作调用迭代器的api ，此api会在修改完后同步修改expectedModCount的值；
 - 3)	使用CopyOnWriteArrayList(线程安全，读写分离)容器代替ArrayList。
 
-### 4.31、NullPointerException
+### 4.30、NullPointerException
 
 继承于java.lang.RuntimeException
 
@@ -814,9 +798,8 @@ java.lang.NullPointerException
 - 3)	使用空安全方法，如StringUtils.isEmpty(null)；
 - 4)	避免从方法中返回空指针，而是返回空collection或者空数组；
 - 5)	避免没有必要的自动包装和自动解包，如：Person ram = new Person(“ram”); int phone = ram.getPhone(); 有可能getPhone返回null。
-- 6） 在对后台数据 以及 引用对象时 尽可能做判空的异常处理
 
-### 4.32、OutOfMemoryError
+### 4.31、OutOfMemoryError
 
 继承于java.lang.Error
 
@@ -877,16 +860,18 @@ android主线程所有代码都跑在Looper.loop()，而Crash的发生是由于�
 
 ​								      百万次的乘法和余弦运算
 
-|              | 第一次 | 第二次 | 第三次 | 第四次 | 第五次 | 第六次 | 第七次 | 第八次 | 第九次 | 第十次 | 代码块执行顺序       |
-| ------------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | -------------------- |
-| 全局捕捉方式 | 92     | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 先全局捕捉方式后正常 |
-| 未做任何处理 | 47     | 3      | 3      | 3      | 4      | 3      | 3      | 3      | 3      | 3      |                      |
-| 未做任何处理 | 92     | 3      | 3      | 2      | 3      | 3      | 3      | 3      | 3      | 3      | 先正常后全局捕捉     |
-| 全局捕捉方式 | 47     | 3      | 4      | 3      | 2      | 3      | 3      | 3      | 3      | 3      |                      |
-| 未做任何处理 | 88     | 4      | 3      | 3      | 3      | 3      | 3      | 3      | 2      | 3      | 先正常后全局捕捉     |
-| 全局捕捉方式 | 47     | 5      | 4      | 3      | 3      | 3      | 3      | 3      | 2      | 3      |                      |
-| 全局捕捉方式 | 89     | 3      | 2      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 先全局捕捉方式后正常 |
-| 未做任何处理 | 47     | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      |                      |
+|                  | 第一次 | 第二次 | 第三次 | 第四次 | 第五次 | 第六次 | 第七次 | 第八次 | 第九次 | 第十次 | 代码块执行顺序       |
+| ---------------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | -------------------- |
+| 全局捕捉方式     | 92     | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 先全局捕捉方式后正常 |
+| 未做任何处理     | 47     | 3      | 3      | 3      | 4      | 3      | 3      | 3      | 3      | 3      |                      |
+| 未做任何处理     | 92     | 3      | 3      | 2      | 3      | 3      | 3      | 3      | 3      | 3      | 先正常后全局捕捉     |
+| 全局捕捉方式     | 47     | 3      | 4      | 3      | 2      | 3      | 3      | 3      | 3      | 3      |                      |
+| 未做任何处理     | 88     | 4      | 3      | 3      | 3      | 3      | 3      | 3      | 2      | 3      | 先正常后全局捕捉     |
+| 全局捕捉方式     | 47     | 5      | 4      | 3      | 3      | 3      | 3      | 3      | 2      | 3      |                      |
+| 全局捕捉方式     | 89     | 3      | 2      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 先全局捕捉方式后正常 |
+| 未做任何处理     | 47     | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      | 3      |                      |
+| 单次全局捕捉     | 89     | 91     | 91     | 88     | 86     | 92     | 93     | 90     | 93     | 91     |                      |
+| 单次不做任何处理 | 87     | 89     | 88     | 87     | 90     | 88     | 87     | 90     | 88     | 86     |                      |
 
 ## 6、本文研究Exception的代码demo
 
