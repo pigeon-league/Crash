@@ -63,9 +63,9 @@ java.util.zip.DataFormatException: incorrect header check
 注：
 Base64编码之后的字符串具有以下特点：
 
-字符串只可能包含A-Z，a-z，0-9，+，/，=字符
-字符串长度是4的倍数
-=只会出现在字符串最后，可能没有或者一个等号或者两个等号
+- 字符串只可能包含A-Z，a-z，0-9，+，/，=字符
+- 字符串长度是4的倍数
+- =只会出现在字符串最后，可能没有或者一个等号或者两个等号
 
 #### case 2
 
@@ -264,7 +264,7 @@ xml中使用的View组件名字和代码中的名字不一致导致
 - 3)	检查XML语法错误。
 - 4)	检查布局中自定义的路径名是否正确。
 - 5)	检查布局中background的样式是否引用了不兼容API Level的样式，通常在4.4系统容易遇到一些只兼容21不兼容19的样式问题。
-- 6)	使用ImageView时，注意图片不要放错文件夹，就是对应分辨率的文件夹。
+- 6)	使用ImageView时，注意图片不要放错文件夹，就是对应分辨率的文件夹，特别需要注意默认的drawable文件夹一定要存在，并且有图片资源。
 
 ### 4.7、EnumConstantNotPresentException
 
@@ -339,33 +339,7 @@ x[0] = new Integer(0);
 
 - 原因分析：
 
-附 ArrayList中一段源码：
-
-```
-/**
- * Constructs a list containing the elements of the specified
- * collection, in the order they are returned by the collection's
- * iterator.
- *
- * @param c the collection whose elements are to be placed into this list
- * @throws NullPointerException if the specified collection is null
- */
-public ArrayList(Collection<? extends E> c) {
-    elementData = c.toArray();
-    if ((size = elementData.length) != 0) {
-        // c.toArray might (incorrectly) not return Object[] (see 6260652)
-        if (elementData.getClass() != Object[].class)
-            elementData = Arrays.copyOf(elementData, size, Object[].class);
-    } else {
-        // replace with empty array.
-        this.elementData = EMPTY_ELEMENTDATA;
-    }
-}
-```
-
-// c.toArray might (incorrectly) not return Object[] (see 6260652)这句注释的意义，查了一下官方的bug文档，Bug ID:JDK-6260652
-
-注：toArray(new Object[0])函数和toArray()是相同的。但是，Arrays.asList的实现并不遵循这一点：如果用子类创建了一个数组，比方说String[]数组，它的toArray()方法将返回一个相同类型的数组（因为使用了clone()方法）而不是一个Object[]数组。
+如果用子类创建了一个数组，比方说String[]数组，它的toArray()方法将返回一个相同类型的数组（因为使用了clone()方法）而不是一个Object[]数组。
 如果后来试图存储一个非String类型（或者其他类型）的数据到这个数组中，就会抛出ArrayStoreException 。
 
 - 预防措施： 
@@ -390,7 +364,6 @@ Java对象的finalize()方法处理超时。 Java的Object对象中，有一个f
 
 - 原因分析：
 
-比方说String[]数组，它的toArray()方法将返回一个相同类型的数组（因为使用了clone()方法）而不是一个Object[]数组。
 当垃圾回收器确定没有对该对象的更多引用时，由垃圾回收器调用。子类重写finalize()方法以处置系统资源或执行其他清理工作。如果该方法中存在耗时操作，超过系统定义的超时时间（默认10秒，厂商也可能修改），就会抛出TimeoutException异常。
 
 - 预防措施： 
